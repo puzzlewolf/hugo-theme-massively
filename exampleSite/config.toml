@@ -4,7 +4,22 @@ baseURL = "http://localhost:1313/"
 theme = "hugo-theme-massively"
 googleanalytics = ""
 disqusShortname = ""
-disableKinds = ["taxonomy", "taxonomyTerm", "section"]
+#disableKinds = ["taxonomy", "taxonomyTerm", "section"]
+
+# For Pages the .RelPermalink must match the menu .URL 
+# For sections the name/directory must match the menu .Identifier
+[menu]
+  [[menu.main]]
+    identifier = "generic"
+    name = "Generic Page"
+    url = "/generic/"
+    weight = 20
+  [[menu.main]]
+    identifier = "elements"
+    name = "Elements Reference"
+    url = "/elements/"
+    weight = 50
+
 
 # [params]
   # set below parameter to define a favicon

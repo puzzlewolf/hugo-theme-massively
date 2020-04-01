@@ -1,14 +1,13 @@
 {{ partial "htmlhead" . }}
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">
-
-    <!-- Wrapper -->
-    	<div id="wrapper">
+		<!-- Wrapper -->
+			<div id="wrapper">
         {{ partial "header" . }}
         {{ partial "nav" . }}
-    
-    		<!-- Main -->
-    			<div id="main">
-    				<!-- Post -->
+
+				<!-- Main -->
+					<div id="main">
+						<!-- Post -->
             <section class="post">
                 <header class="major">
                     {{ if not .Date.IsZero }}
@@ -21,7 +20,7 @@
                 <div class="image main"><img src="{{ .Params.image | relURL }}" alt="" /></div>
                 {{ end }}
                 {{ .Content }}
-          
+
                 {{ partial "postcustom" . }}
                 
                 {{ if not (eq .Params.disableComments true) }}
