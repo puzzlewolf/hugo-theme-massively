@@ -1,11 +1,12 @@
 +++
 Title = "Elements Reference"
 +++
-ELEMENTS REFERENCE
-TEXT
+
+## TEXT
 
 This is **bold** and this is strong. This is _italic_ and this is emphasized. This is superscript text and this is subscript text. This is underlined and this is code: `for (;;) { ... }`. Finally, this is a [link]().
 
+----
 ## HEADING LEVEL 2
 
 ### HEADING LEVEL 3
@@ -16,24 +17,29 @@ This is **bold** and this is strong. This is _italic_ and this is emphasized. Th
 
 ###### HEADING LEVEL 6
 
+----
+{{< subheader >}}
 ## HEADING WITH A SUBTITLE
-
 Lorem ipsum dolor sit amet nullam id egestas urna aliquam
+{{< /subheader >}}
 
 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.
 
+{{< subheader >}}
 ### HEADING WITH A SUBTITLE
-
 Lorem ipsum dolor sit amet nullam id egestas urna aliquam
+{{< /subheader >}}
 
 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.
 
+{{< subheader >}}
 #### HEADING WITH A SUBTITLE
-
 Lorem ipsum dolor sit amet nullam id egestas urna aliquam
+{{< /subheader >}}
 
 Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor sem non mi integer non faucibus ornare mi ut ante amet placerat aliquet. Volutpat eu sed ante lacinia sapien lorem accumsan varius montes viverra nibh in adipiscing blandit tempus accumsan.
 
+----
 ## LISTS
 
 ### UNORDERED
@@ -60,17 +66,22 @@ Nunc lacinia ante nunc ac lobortis. Interdum adipiscing gravida odio porttitor s
 
 
 ### DEFINITION
+{{< definition-group >}}
+    {{< definition title="Item 1" >}}
+    Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
+    {{< /definition >}}
+    
+    {{< definition title="Item 2" >}}
+    Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
+    {{< /definition >}}
+    
+    {{< definition title="Item 3" >}}
+    Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
+    {{< /definition >}}
+{{< /definition-group >}}
 
-Item 1
-Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
 
-Item 2
-Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-
-Item 3
-Lorem ipsum dolor vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent.
-
-ACTIONS
+### ACTIONS
 
 PRIMARY
 DEFAULT
@@ -85,11 +96,13 @@ DEFAULT
 SMALL
 SMALL
 
-### BLOCKQUOTE
+---
+## BLOCKQUOTE
 
 > Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis.
 
-TABLE
+---
+## TABLE
 
 DEFAULT
 
@@ -124,19 +137,13 @@ ICON
 ICON
 PRIMARY
 DEFAULT
-FORM
 
+---
+## FORM
 
+{{< form >}}
 
-
-Low
-Normal
-High
-Email me a copy
-I am a human
-
-
-
+---
 IMAGE
 
 FIT
@@ -157,11 +164,14 @@ Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget
 
 Lorem ipsum dolor sit accumsan interdum nisi, quis tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis.
 
-BOX
-
+## BOX
+{{< box >}}
 Felis sagittis eget tempus primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Magna sed etiam ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus lorem ipsum dolor sit amet nullam. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent tincidunt felis sagittis eget. tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan eu faucibus. Integer ac pellentesque praesent. Vestibulum ante ipsum primis in faucibus magna blandit adipiscing eu felis iaculis volutpat lorem ipsum dolor.
-PREFORMATTED
+{{< /box >}}
 
+## PREFORMATTED
+
+```
 i = 0;
 
 while (!deck.isInOrder()) {
@@ -171,3 +181,4 @@ while (!deck.isInOrder()) {
 }
 
 print 'It took ' + i + ' iterations to sort the deck.';
+```
