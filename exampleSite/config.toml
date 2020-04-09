@@ -31,7 +31,7 @@ disqusShortname = ""
  [params.posts]
 #     folderName = "post"
 #     pageSize = "6"
-#     featuredPost = false
+#      featuredPost = false
 #     paginationPages = 2
 #     showFirstLast = false
  
