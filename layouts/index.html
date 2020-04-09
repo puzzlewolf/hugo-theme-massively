@@ -1,36 +1,27 @@
 {{ partial "htmlhead" . }}
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">
 
-		{{ $postsFoldername := .Site.Params.Posts.foldername | default "post" }}
+		{{ $scratch := newScratch }}
 		{{ $postsPageSize := .Site.Params.Posts.pagesize | default 6 }}
+		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
+		{{ $dateFormat :=  .Site.Params.DateFormat | default "January 2, 2006" }}
+		{{ $allPosts := where .Site.RegularPages "Section" "posts" }}
+		{{ $firstPost := first 1 $allPosts }}
 
-		{{ .Scratch.Set "postsFeaturedPostEnabled" true }}
-		{{ if (or (eq .Site.Params.Posts.featuredpost "false") (eq .Site.Params.Posts.featuredpost false)) }}
-			{{ .Scratch.Set "postsFeaturedPostEnabled" false }}
-		{{ end }}
-		{{ $postsFeaturedPostEnabled := .Scratch.Get "postsFeaturedPostEnabled" }}
-
-		{{ $posts := where .Data.Pages "Type" $postsFoldername }}
-
-		{{ if .IsHome }}
-		{{ $posts = .Site.RegularPages }}
-		{{ end }}
-
-		{{ $firstPost := first 1 $posts }}
-
-		{{ if and (eq $postsFeaturedPostEnabled true) (gt (len $posts) 1) }}
-			{{ .Scratch.Set "postsForPaging" (after 1 $posts) }}
+		{{ if $featuredPostEnabled }}
+			{{ $scratch.Set "remainingPosts" (.Paginate (after 1 $allPosts) $postsPageSize) }}
 		{{ else }}
-			{{ .Scratch.Set "postsForPaging" $posts }}
-		{{ end }}
-		{{ $postsForPaging := .Scratch.Get "postsForPaging" }}
-
-		{{ $postsPaging := .Paginate $postsForPaging $postsPageSize }}
+			{{ $scratch.Set "remainingPosts" (.Paginate $allPosts $postsPageSize) }}
+		{{ end }}	
+		{{ $remainingPosts := $scratch.Get "remainingPosts" }}
+	
+		{{ $postsPaging := .Paginate $remainingPosts $postsPageSize }}
+		{{ $isFirstPage := eq $postsPaging.PageNumber 1 }}
 
 		<!-- Wrapper -->
-			<div id="wrapper" class="fade-in" data-pfn="{{ $postsFoldername }}" data-ps="{{ $postsPageSize }}" data-pfp="{{ $postsFeaturedPostEnabled }}">
+			<div id="wrapper" class="fade-in">
 
-				{{ if eq $postsPaging.PageNumber 1 }}
+				{{ if $isFirstPage }}
 				{{ partial "intro.html" . }}
 				{{ end }}
 
@@ -40,18 +31,15 @@
 				<!-- Main -->
 					<div id="main">
 
-						{{ if (eq $postsFeaturedPostEnabled true) }}
-						{{ partial "posts/featured.html" (dict "firstpost" $firstPost "siteData" (index .Site.Data .Site.Language.Lang)) }}
+						{{ if and $featuredPostEnabled $isFirstPage }}
+							{{ range $firstPost }}
+								{{ partial "posts/featured.html" . }}
+							{{ end }}
 						{{ end }}
-
-						{{ if (not (and (eq (len $posts) 1) (eq $postsFeaturedPostEnabled true))) }}
-							{{ partial "posts/list.html" (dict "posts" $postsPaging "siteData" (index .Site.Data .Site.Language.Lang)) }}
-						{{ end }}
-
-						{{ $paginator := .Paginator }}
-						{{ $outer := . }}
-						{{ partial "posts/pagination.html" (dict "paginator" $paginator "outer" $outer)}}
-
+						
+						{{ partial "posts/list.html" (dict "postsToList" $remainingPosts.Pages "dateFormat" $dateFormat)}}
+							
+						{{ partial "posts/pagination.html" (dict "paginator" $remainingPosts  "outer" . )}}
 					</div>
 
 					{{ partial "footer/index" . }}

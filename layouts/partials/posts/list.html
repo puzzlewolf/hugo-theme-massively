@@ -1,11 +1,10 @@
 <!-- Posts -->
-{{ $data := .siteData }}
 <section class="posts">
-    {{ range .posts.Pages }}
+    {{ range .postsToList }}
     <article>
         <header>
-            {{ if not .Date.IsZero }}
-            <span class="date">{{ .Date.Format (.Site.Params.DateFormat | default "January 2, 2006") }}</span>
+            {{ with .Date }}
+            <span class="date">{{ .Format $.dateFormat }}</span>
             {{ end }}
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         </header>
@@ -18,7 +17,7 @@
         <p>{{ .Summary }}</p>
         {{ end }}
         <ul class="actions special">
-            <li><a href="{{ .Permalink }}" class="button">{{ $data.post.linktext }}</a></li>
+            <li><a href="{{ .Permalink }}" class="button">FULL STORY</a></li>
         </ul>
     </article>
     {{ end }}
