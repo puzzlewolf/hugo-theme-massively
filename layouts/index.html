@@ -5,7 +5,10 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html lang='{{ .Site.Language.Lang | default "en-us" }}'>
-	{{ partial "head" . }}
+	<head>
+		{{ partial "head/metadata" . }}
+		{{ partial "head/css" . }}
+	</head>
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
 		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
 		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
@@ -28,10 +31,10 @@
 		<div id="wrapper" class="fade-in">
 			
 			{{ if $isFirstPage }}
-				{{ partial "intro.html" . }}
+				{{ partial "header/intro" . }}
 			{{ end }}
-			{{ partial "header" . }}
-			{{ partial "nav" . }}
+			{{ partial "header/site-header" . }}
+			{{ partial "header/site-nav" . }}
 		
 			<!-- Main -->
 			<div id="main">
@@ -42,14 +45,13 @@
 				{{ end }}
 				
 				{{ partial "posts/list.html" (dict "postsToList" $remainingPosts.Pages "dateFormat" $dateFormat)}}
-					
 				{{ partial "posts/pagination.html" (dict "paginator" $remainingPosts  "outer" . )}}
 			</div>
 			
-			{{ partial "footer/index" . }}
-			{{ partial "copyright" . }}
+			{{ partial "footer/site-footer" . }}
+			{{ partial "footer/copyright" . }}
 		</div>
 		{{ template "_internal/google_analytics.html" . }}
-		{{ partial "scripts/index" . }}
+		{{ partial "footer/scripts" . }}
 	</body>
 </html>
