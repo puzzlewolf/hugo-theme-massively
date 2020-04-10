@@ -26,3 +26,5 @@
   other = "Suivant"
 [PAGINATION_PREVIOUS]
   other = "Précédent"
+[LINK_TEXT]
+  other = "Histoire Complète"

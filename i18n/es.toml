@@ -26,3 +26,5 @@
   other = "Próximo"
 [PAGINATION_PREVIOUS]
   other = "Previo"
+[LINK_TEXT]
+  other = "Leer Mas"

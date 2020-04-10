@@ -30,3 +30,5 @@
   other = "First"
 [PAGINATION_LAST]
   other = "Last"
+[LINK_TEXT]
+  other = "Full Story"

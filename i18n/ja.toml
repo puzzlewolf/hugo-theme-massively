@@ -30,3 +30,5 @@
   other = "最初"
 [PAGINATION_LAST]
   other = "最後"
+[LINK_TEXT]
+  other = "続きを読む"
