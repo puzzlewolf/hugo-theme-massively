@@ -8,8 +8,11 @@
             {{ end }}
             <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         </header>
-        {{ if .Params.image }}
-        <a href="{{ .Permalink }}" class="image fit"><img src="{{ .Params.image | relURL }}" alt="" /></a>
+        {{ with .Params.image }}
+        <a href="{{ $.Permalink }}" class="image fit"><img src="{{ . | relURL }}" alt="" /></a>
+        {{ end }}
+        {{ with .Resources.GetMatch "header" }}
+        <a href="{{ $.Permalink }}" class="image fit"><img src="{{ .Permalink | relURL }}" alt="" /></a>
         {{ end }}
         {{ if .Description }}
         <p>{{ .Description }}</p>

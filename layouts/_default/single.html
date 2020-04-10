@@ -11,6 +11,9 @@
 	  {{ with .Params.image }}
 	  <div class="image main"><img src="{{ . | relURL }}" alt="" /></div>
 	  {{ end }}
+	  {{ with .Resources.GetMatch "header" }}
+	  <div class="image main"><img src="{{ .Permalink }}" alt="" /></div>
+	  {{ end }}
 	  
 	  {{ .Content }}
 	  {{ partial "postcustom" . }}
