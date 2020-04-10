@@ -1,27 +1,20 @@
 <!-- Posts -->
 <section class="posts">
     {{ range .postsToList }}
-    <article>
-        <header>
-            {{ with .Date }}
-            <span class="date">{{ .Format $.dateFormat }}</span>
-            {{ end }}
-            <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        </header>
-        {{ with .Params.image }}
-        <a href="{{ $.Permalink }}" class="image fit"><img src="{{ . | relURL }}" alt="" /></a>
-        {{ end }}
-        {{ with .Resources.GetMatch "header" }}
-        <a href="{{ $.Permalink }}" class="image fit"><img src="{{ .Permalink | relURL }}" alt="" /></a>
-        {{ end }}
-        {{ if .Description }}
-        <p>{{ .Description }}</p>
-        {{ else }}
-        <p>{{ .Summary }}</p>
-        {{ end }}
-        <ul class="actions special">
-            <li><a href="{{ .Permalink }}" class="button">{{ i18n "LINK_TEXT" }}</a></li>
-        </ul>
-    </article>
+      <article>
+          <header>
+              {{ with .Date }}
+              <span class="date">{{ .Format $.dateFormat }}</span>
+              {{ end }}
+              <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+          </header>
+          {{ with partial "posts/imgURL" . }}
+          <a href="{{ $.Permalink }}" class="image fit"><img src="{{ . }}" alt="" /></a>
+          {{ end }}
+          <p>{{ partial "posts/excerpt" . }}</p>
+          <ul class="actions special">
+              <li><a href="{{ .Permalink }}" class="button">{{ i18n "LINK_TEXT" }}</a></li>
+          </ul>
+      </article>
     {{ end }}
 </section>

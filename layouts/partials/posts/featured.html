@@ -5,17 +5,10 @@
         <span class="date">{{ .Format ($.Site.Params.DateFormat | default "January 2, 2006") }}</span>
         {{ end }}
         <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
-        {{ if .Description }}
-        <p>{{ .Description }}</p>
-        {{ else }}
-        <p>{{ .Summary }}</p>
-        {{ end }}
+        <p>{{ partial "posts/excerpt" . }}</p>
     </header>
-    {{ with .Params.image }}
-    <a href="{{ $.Permalink }}" class="image main"><img src="{{ . | relURL }}" alt="" /></a>
-    {{ end }}
-    {{ with .Resources.GetMatch "header" }}
-    <a href="{{ $.Permalink }}" class="image main"><img src="{{ . | relURL }}" alt="" /></a>
+    {{ with partial "posts/imgURL" . }}
+    <a href="{{ $.Permalink }}" class="image main"><img src="{{ . }}" alt="" /></a>
     {{ end }}
     <ul class="actions special">
         <li><a href="{{ .Permalink }}" class="button big">{{ i18n "LINK_TEXT" }}</a></li>

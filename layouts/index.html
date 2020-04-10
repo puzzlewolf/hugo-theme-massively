@@ -15,18 +15,15 @@
 		{{ $dateFormat :=  .Site.Params.DateFormat | default "January 2, 2006" }}
 		{{ $folderName :=  .Site.Params.folderName | default "posts" }}
 		{{ $allPosts := where .Site.RegularPages "Section" $folderName }}
-		{{ $firstPost := first 1 $allPosts }}
+		{{ $remainingPosts := .Paginate $allPosts $postPerPage }}
+		{{ $featuredPost := slice }}
 		
 		{{ if $featuredPostEnabled }}
-			{{ .Scratch.Set "remainingPosts" (.Paginate (after 1 $allPosts) $postPerPage) }}
-		{{ else }}
-			{{ .Scratch.Set "remainingPosts" (.Paginate $allPosts $postPerPage) }}
+			{{ $featuredPost = first 1 $allPosts }}
+			{{ $remainingPosts = (.Paginate (after 1 $allPosts) $postPerPage) }}
 		{{ end }}
-		{{ $remainingPosts := .Scratch.Get "remainingPosts" }}
-		
-		{{ $postsPaging := .Paginate $remainingPosts $postPerPage }}
-		{{ $isFirstPage := eq $postsPaging.PageNumber 1 }}
 
+		{{ $isFirstPage := eq $remainingPosts.PageNumber 1 }}
 		<!-- Wrapper -->
 		<div id="wrapper" class="fade-in">
 			
@@ -38,10 +35,8 @@
 		
 			<!-- Main -->
 			<div id="main">
-				{{ if and $featuredPostEnabled $isFirstPage }}
-					{{ range $firstPost }}
-						{{ partial "posts/featured.html" . }}
-					{{ end }}
+				{{ range $featuredPost }}
+					{{ partial "posts/featured.html" . }}
 				{{ end }}
 				
 				{{ partial "posts/list.html" (dict "postsToList" $remainingPosts.Pages "dateFormat" $dateFormat)}}

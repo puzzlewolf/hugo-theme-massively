@@ -8,11 +8,8 @@
 		  <h1>{{ .Title }}</h1>
 		  <p>{{ .Description }}</p>
 	  </header>
-	  {{ with .Params.image }}
-	  <div class="image main"><img src="{{ . | relURL }}" alt="" /></div>
-	  {{ end }}
-	  {{ with .Resources.GetMatch "header" }}
-	  <div class="image main"><img src="{{ .Permalink }}" alt="" /></div>
+	  {{ with partial "posts/imgURL" . }}
+	  <div class="image main"><img src="{{ . }}" alt="" /></div>
 	  {{ end }}
 	  
 	  {{ .Content }}
