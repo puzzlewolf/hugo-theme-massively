@@ -1,22 +1,22 @@
 {{ define "main" }}
-    <!-- Post -->
-    <section class="post">
-      <header class="major">
-          {{ if not .Date.IsZero }}
-          <span class="date">{{ .Date.Format (.Site.Params.DateFormat | default "January 2, 2006") }}</span>
-          {{ end }}
-          <h1>{{ .Title }}</h1>
-          <p>{{ .Description }}</p>
-      </header>
-      {{ if .Params.image }}
-      <div class="image main"><img src="{{ .Params.image | relURL }}" alt="" /></div>
-      {{ end }}
-      {{ .Content }}
-    
-      {{ partial "postcustom" . }}
-      
-      {{ if not (eq .Params.disableComments true) }}
-      {{ template "_internal/disqus.html" . }}
-      {{ end }}
-    </section>
+	<!-- Post -->
+	<section class="post">
+	  <header class="major">
+		  {{ with .Date }}
+		  <span class="date">{{ .Format ($.Site.Params.DateFormat | default "January 2, 2006") }}</span>
+		  {{ end }}
+		  <h1>{{ .Title }}</h1>
+		  <p>{{ .Description }}</p>
+	  </header>
+	  {{ with .Params.image }}
+	  <div class="image main"><img src="{{ . | relURL }}" alt="" /></div>
+	  {{ end }}
+	  
+	  {{ .Content }}
+	  {{ partial "postcustom" . }}
+	  
+	  {{ if not .Params.disableComments }}
+	  {{ template "_internal/disqus.html" . }}
+	  {{ end }}
+	</section>
 {{ end }}
