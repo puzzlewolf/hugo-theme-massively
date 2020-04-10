@@ -29,12 +29,13 @@ disqusShortname = ""
 
 # Below parameters can be set to override default post settings
 [params.posts]
-#     folderName = "post"
+#     folderName = "posts"
 #     pageSize = "6"
-#      featuredPost = false
+#     featuredPost = false
 #     paginationPages = 2
 #     showFirstLast = false
- 
+
+# Language Settings
 [languages]
  [languages.en]
    languageName = "English"
@@ -57,6 +58,9 @@ disqusShortname = ""
   url = "/es/elementos/"
   weight = 2
   
-#[languages.fr]
-#  languageName = "Français"
-#  title = "Massively - Version Française"
+# [languages.fr]
+#   languageName = "Français"
+#   title = "Massively - Version Française"
+#   contentDir = "content/fr"
+#   [languages.fr.params.navigation]
+#     folderName = "essais"

@@ -10,7 +10,8 @@
 		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
 		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
 		{{ $dateFormat :=  .Site.Params.DateFormat | default "January 2, 2006" }}
-		{{ $allPosts := where .Site.RegularPages "Section" "posts" }}
+		{{ $folderName :=  .Site.Params.folderName | default "posts" }}
+		{{ $allPosts := where .Site.RegularPages "Section" $folderName }}
 		{{ $firstPost := first 1 $allPosts }}
 		
 		{{ if $featuredPostEnabled }}
