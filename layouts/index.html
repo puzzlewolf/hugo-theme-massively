@@ -12,7 +12,6 @@
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
 		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
 		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
-		{{ $dateFormat :=  .Site.Params.DateFormat | default "January 2, 2006" }}
 		{{ $folderName :=  .Site.Params.folderName | default "posts" }}
 		{{ $allPosts := where .Site.RegularPages "Section" $folderName }}
 		{{ $remainingPosts := .Paginate $allPosts $postPerPage }}
@@ -39,7 +38,7 @@
 					{{ partial "posts/featured.html" . }}
 				{{ end }}
 				
-				{{ partial "posts/list.html" (dict "postsToList" $remainingPosts.Pages "dateFormat" $dateFormat)}}
+				{{ partial "posts/list.html" $remainingPosts.Pages }}
 				{{ partial "posts/pagination.html" (dict "paginator" $remainingPosts  "outer" . )}}
 			</div>
 			

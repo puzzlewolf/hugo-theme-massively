@@ -5,6 +5,6 @@
   {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
   {{ $postsPaging := .Paginate $allPosts $postPerPage }}
   
-  {{ partial "posts/list.html" (dict "postsToList" $postsPaging.Pages "dateFormat" $dateFormat)}}
+  {{ partial "posts/list.html" $postsPaging.Pages }}
   {{ partial "posts/pagination.html" (dict "paginator" $postsPaging  "outer" . )}}
 {{ end }}
