@@ -8,6 +8,8 @@
 	<head>
 		{{ partial "head/metadata" . }}
 		{{ partial "head/css" . }}
+		{{ partial "head/rss" . }}
+		{{ template "_internal/opengraph.html" . }}
 	</head>
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
 		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
@@ -18,7 +20,6 @@
 		{{ $featuredPost := slice }}
 		
 		{{ if $featuredPostEnabled }}
-			{{ $featuredPost = first 1 $allPosts }}
 			{{ $remainingPosts = (.Paginate (after 1 $allPosts) $postPerPage) }}
 		{{ end }}
 
@@ -28,6 +29,7 @@
 			
 			{{ if $isFirstPage }}
 				{{ partial "header/intro" . }}
+				{{ $featuredPost = first 1 $allPosts }}
 			{{ end }}
 			{{ partial "header/site-header" . }}
 			{{ partial "header/site-nav" . }}

@@ -8,6 +8,8 @@
 	<head>
 		{{ partial "head/metadata" . }}
 		{{ partial "head/css" . }}
+		{{ partial "head/rss" . }}
+		{{ template "_internal/opengraph.html" . }}
 	</head>
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
 		<!-- Wrapper -->
