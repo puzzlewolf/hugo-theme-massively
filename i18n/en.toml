@@ -32,3 +32,6 @@
   other = "Last"
 [LINK_TEXT]
   other = "Full Story"
+[TAG_TEXT]
+  one = "View Post"
+  other = "View Posts"

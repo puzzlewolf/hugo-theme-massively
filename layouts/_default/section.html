@@ -1,9 +1,6 @@
 {{ define "main" }}
   {{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
-  {{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
-  {{ $dateFormat :=  .Site.Params.DateFormat | default "January 2, 2006" }}
-  {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
-  {{ $postsPaging := .Paginate $allPosts $postPerPage }}
+  {{ $postsPaging := .Paginate .Pages $postPerPage }}
   
   {{ partial "posts/list.html" $postsPaging.Pages }}
   {{ partial "posts/pagination.html" (dict "paginator" $postsPaging  "outer" . )}}
