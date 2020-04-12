@@ -20,6 +20,7 @@
 		{{ $featuredPost := slice }}
 		
 		{{ if $featuredPostEnabled }}
+			{{ $featuredPost = index (first 1 $allPosts) 0 }}
 			{{ $remainingPosts = (.Paginate (after 1 $allPosts) $postPerPage) }}
 		{{ end }}
 
@@ -29,15 +30,15 @@
 			
 			{{ if $isFirstPage }}
 				{{ partial "header/intro" . }}
-				{{ $featuredPost = first 1 $allPosts }}
+				
 			{{ end }}
 			{{ partial "header/site-header" . }}
 			{{ partial "header/site-nav" . }}
 		
 			<!-- Main -->
 			<div id="main">
-				{{ range $featuredPost }}
-					{{ partial "posts/featured.html" . }}
+				{{ if and $featuredPost $isFirstPage }}
+					{{ partial "posts/featured.html" $featuredPost }}
 				{{ end }}
 				
 				{{ partial "posts/list.html" $remainingPosts.Pages }}
