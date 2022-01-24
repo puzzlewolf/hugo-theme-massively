@@ -18,6 +18,10 @@
   other = "Diseño: [HTML5 UP](https://html5up.net)"
 [COPYRIGHT_MESSAGE_2]
   other = "Implementacion Hugo: [curttimson](https://curtistimson.co.uk)"
+[GDPR]
+  other = "GDPR"
+[IMPRESSUM]
+  other = "Impressum"
 [INTRO_CONTINUE]
   other = "Continuar"
 [NAV_CONTACT]
