@@ -2,7 +2,7 @@
 <article class="post featured">
     <header class="major">
         {{ with .Date }}
-        <span class="date">{{ .Format ($.Site.Params.DateFormat | default "January 2, 2006") }}</span>
+        <span class="date">{{ time.Format (partial "posts/dateFormat" $) . }}</span>
         {{ end }}
         <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
         <p>{{ partial "posts/excerpt" . }}</p>

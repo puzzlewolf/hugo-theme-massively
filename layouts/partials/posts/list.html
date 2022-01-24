@@ -4,7 +4,7 @@
       <article>
           <header>
               {{ with .Date }}
-              <span class="date">{{ .Format (partial "posts/dateFormat" $page) }}</span>
+              <span class="date">{{ time.Format (partial "posts/dateFormat" $page) $page.Date }}</span>
               {{ end }}
               <h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
           </header>
