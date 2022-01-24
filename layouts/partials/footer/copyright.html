@@ -2,8 +2,10 @@
 <div id="copyright">
     <ul>
       <li>&copy; {{ .Site.Title }}</li>
+      {{ if .Site.Params.Attribution_in_footer }}
       <li>{{ i18n "COPYRIGHT_MESSAGE_1" . | markdownify }}</li>
       <li>{{ i18n "COPYRIGHT_MESSAGE_2" . | markdownify }}</li>
+      {{ end }}
       {{ with .Site.Params.Impressum }}
       <li> <a href={{ . }}>{{ i18n "IMPRESSUM" . | markdownify }}</a> </li>
       {{ end }}
