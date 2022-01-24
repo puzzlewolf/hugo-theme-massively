@@ -13,7 +13,8 @@
 	</head>
 	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
 		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
-		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default true }}
+		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default false }}
+		{{ $staticPostEnabled := .Site.Params.Posts.staticpost | default true }}
 		{{ $folderName :=  .Site.Params.folderName | default "posts" }}
 		{{ $allPosts := where .Site.RegularPages "Section" $folderName }}
 		{{ $remainingPosts := .Paginate $allPosts $postPerPage }}
@@ -37,7 +38,11 @@
 		
 			<!-- Main -->
 			<div id="main">
-				{{ if and $featuredPost $isFirstPage }}
+				{{ if and $staticPostEnabled $isFirstPage }}
+					{{ with .Site.GetPage .Site.Params.Posts.staticfile }}
+						{{ partial "posts/static.html" . }}
+					{{ end }}
+				{{ else if and $featuredPost $isFirstPage }}
 					{{ partial "posts/featured.html" $featuredPost }}
 				{{ end }}
 				
