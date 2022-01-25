@@ -11,45 +11,37 @@
 		{{ partial "head/rss" . }}
 		{{ template "_internal/opengraph.html" . }}
 	</head>
-	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">		
-		{{ $postPerPage := .Site.Params.Posts.pagesize | default 6 }}
-		{{ $featuredPostEnabled := .Site.Params.Posts.featuredpost | default false }}
-		{{ $staticPostEnabled := .Site.Params.Posts.staticpost | default true }}
-		{{ $folderName :=  .Site.Params.folderName | default "posts" }}
-		{{ $allPosts := where .Site.RegularPages "Section" $folderName }}
-		{{ $remainingPosts := .Paginate $allPosts $postPerPage }}
-		{{ $featuredPost := slice }}
-		
-		{{ if $featuredPostEnabled }}
-			{{ $featuredPost = index (first 1 $allPosts) 0 }}
-			{{ $remainingPosts = (.Paginate (after 1 $allPosts) $postPerPage) }}
-		{{ end }}
-
-		{{ $isFirstPage := eq $remainingPosts.PageNumber 1 }}
-		<!-- Wrapper -->
+	<body lang='{{ .Site.Language.Lang | default "en-us" }}' class="is-preload">
 		<div id="wrapper" class="fade-in">
-			
-			{{ if $isFirstPage }}
-				{{ partial "header/intro" . }}
-				
-			{{ end }}
+
+			{{ partial "header/intro" . }}
 			{{ partial "header/site-header" . }}
 			{{ partial "header/site-nav" . }}
-		
+
 			<!-- Main -->
 			<div id="main">
-				{{ if and $staticPostEnabled $isFirstPage }}
-					{{ with .Site.GetPage .Site.Params.Posts.staticfile }}
-						{{ partial "posts/static.html" . }}
-					{{ end }}
-				{{ else if and $featuredPost $isFirstPage }}
-					{{ partial "posts/featured.html" $featuredPost }}
+				{{ with .Site.GetPage .Site.Params.Posts.staticfile }}
+					<section class="post">
+						<header class="major">
+							<h1>{{ .Title }}</h1>
+							<!-- <p>{{ .Description }}</p> -->
+						</header>
+						{{ with partial "posts/imgURL" . }}
+						<div class="image main"><img src="{{ . }}" alt="" /></div>
+						{{ end }}
+
+						{{ .Content }}
+						{{ partial "postcustom" . }}
+
+						{{ partial "posts/tags.html" .}}
+
+						{{ if not .Params.disableComments }}
+							{{ template "_internal/disqus.html" . }}
+						{{ end }}
+						</section>
 				{{ end }}
-				
-				{{ partial "posts/list.html" $remainingPosts.Pages }}
-				{{ partial "posts/pagination.html" (dict "paginator" $remainingPosts  "outer" . )}}
 			</div>
-			
+
 			{{ partial "footer/site-footer" . }}
 			{{ partial "footer/copyright" . }}
 		</div>
