@@ -1,0 +1,8 @@
+Unsere nächsten Konzerte:
+<ul>
+    {{ range (where .Site.RegularPages "Section" "concerts").ByDate }}
+        <li>
+          {{ .Date | time.Format ":date_long" }}, <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </li>
+    {{ end }}
+</ul>

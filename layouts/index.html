@@ -31,9 +31,12 @@
 						{{ end }}
 
 						{{ .Content }}
-						</section>
+					</section>
 				{{ end }}
+
+			        {{ partial "next_concerts" . }}
 			</div>
+
 
 			{{ partial "footer/site-footer" . }}
 			{{ partial "footer/copyright" . }}
