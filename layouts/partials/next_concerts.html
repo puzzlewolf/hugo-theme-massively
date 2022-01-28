@@ -1,6 +1,6 @@
 Unsere nächsten Konzerte:
 <ul>
-    {{ range (where .Site.RegularPages "Section" "concerts").ByDate }}
+    {{ range first 3 (where (where .Site.RegularPages "Section" "concerts") ".Date" "ge" now).ByDate }}
         <li>
           {{ .Date | time.Format ":date_long" }}, <a href="{{ .Permalink }}">{{ .Title }}</a>
         </li>
