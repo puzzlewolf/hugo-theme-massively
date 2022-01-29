@@ -1,9 +1,8 @@
 <!-- Footer -->
 {{ $data := index .Site.Data .Site.Language.Lang }}
 <footer id="footer">
-    {{ with $data.contactinfo.contactformaction }}
     <section>
-      <form method="post" action="{{ . }}">
+      <form name="contact" {{ if .Site.Params.netlifyForms }}netlify{{ else }}method="post" action="{{ $data.contactinfo.contactformaction }}"{{ end }}>
         <div class="fields">
           <div class="field">
             <label for="name">{{ i18n "CONTACT_FORM_FIELD_NAME" . }}</label>
@@ -23,7 +22,6 @@
         </ul>
       </form>
     </section>
-    {{ end }}
     <section class="split contact">
         {{ with $data.contactinfo.address }}
         <section class="alt">
