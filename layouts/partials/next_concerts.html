@@ -1,10 +1,14 @@
+
+{{ $concerts := (where (where .Site.RegularPages "Section" "concerts") ".Date" "ge" now).ByDate }}
+{{ if gt (len $concerts) 0 }}
 Unsere nächsten Konzerte:
 <div class="concert">
   <ul>
-    {{ range first 3 (where (where .Site.RegularPages "Section" "concerts") ".Date" "ge" now).ByDate }}
+    {{ range first 3 $concerts }}
       <li>
         {{ .Date | time.Format ":date_long" }}: <a href="{{ .Permalink }}" class="date">{{ .Title }}</a>
       </li>
     {{ end }}
   </ul>
 </div>
+{{ end }}
