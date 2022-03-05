@@ -101,6 +101,22 @@
 				}
 			}
 
+			.floating-text {
+				overflow: hidden;
+			}
+
+			.floating-image {
+				float: right;
+				max-width: 50%;
+				padding-left: 2rem;
+
+				@include breakpoint('<=small') {
+					float: inherit;
+					max-width: none;
+					padding-left: 0;
+				}
+			}
+
 			@include breakpoint('<=large') {
 				@include padding((_size(padding) * 3), (_size(padding) * 2));
 			}
