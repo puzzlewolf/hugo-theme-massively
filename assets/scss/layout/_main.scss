@@ -81,6 +81,26 @@
 				}
 			}
 
+			.concert-columns {
+				@include vendor('display', 'flex');
+				flex-direction: row-reverse;
+				max-width: _size(wrapper);
+
+				> div {
+					@include vendor('flex-basis', '50%');
+					@include vendor('flex-grow', '1');
+					@include vendor('flex-shrink', '1');
+				}
+
+				> .concert-image {
+					margin: 0 0 1.25rem 0;
+				}
+
+				@include breakpoint('<=medium') {
+					display: block;
+				}
+			}
+
 			@include breakpoint('<=large') {
 				@include padding((_size(padding) * 3), (_size(padding) * 2));
 			}
